@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FaceWiki Login</title>
+    </head>
+<body>
+    <section>
+        <div id="form-title">
+           <h1>Login</h1>
+        </div>
+        <div id="form-content">      
+        </div>
+   </section>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$(function() {
+    $('#form-content').html(introHTML);
+})
+var loginHTML = `
+    <form action="/auth/login" method="post">
+      <div>
+        <label>Username:</label>
+        <input type="text" name="username"/>
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+      </div>
+      <div>
+        <input type="submit" value="Log In"/>
+      </div>
+    </form>
+    <div class="back"><span>Back</span></div>
+`;
+
+var introHTML = `
+    <div class="log-sign" data-type="sign">
+        <p>Sign Up</p>
+    </div>
+    <div class="log-sign" data-type="log">
+        <p>Log In</p>
+    </div>      
+`;
+
+var signupHTML = `
+    <form action="/auth/signup" method="post">
+      <div>
+        <label>Username:</label>
+        <input type="text" name="username"/>
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+      </div>
+      <div>
+        <label>Re-type Password:</label>
+        <input type="password" name="re-password"/>
+      </div>
+      <div>
+        <input type="submit" value="Sign Up"/>
+      </div>
+    </form>
+    <div class="back"><span>Back</span></div>
+`;
+$('body').on('click', '.log-sign', function() {
+    if ($(this).attr('data-type') === 'log') {
+        $('#form-content').html(loginHTML);
+    }
+    else if($(this).attr('data-type') === 'sign') {
+        $('#form-content').html(signupHTML);
+    }
+    else {
+        console.log("error with log-sign click event");
+        console.log($(this).attr('data-type'));
+    }
+});
+$('body').on('click', '.back', function() {
+    $('#form-content').html(introHTML);
+});
+
+
+</script>
+</body>
+</html>
