@@ -13,12 +13,24 @@
     <a href="/browse">[ Network ]</a> 
     <a href="/auth/logout">[ Log Out ]</a>
   </nav>
-  <article>
-    <div id="markdown">Markdown here</div>
+  <article id="home">
   </article>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-
+var textarea = `
+<form action="/api/markdown">
+  <textarea id="markdown" rows="50" cols="100">
+  </textarea>
+  <button type="button" id="markdown-cancel">Cancel</button>
+  <button type="button" id="markdown-save">Save</button>
+</form>
+`;
+$(function() {
+  $.get('/api/markdown', function(data) {
+    $('#home').html = data;
+  });
+})
+$('')
 </script>
 </body>
 

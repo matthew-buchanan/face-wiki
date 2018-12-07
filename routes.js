@@ -53,8 +53,21 @@ router.get('/auth/logout', function(req, res) {
   res.redirect('/auth'); 
 });
 
-router.route('/auth/signup').get(con.createUser);
-  
+router.route('/auth/signup').post(con.createUser);
+
+router.get('/api/markdown')
+  .all(function(req, res) {
+    if (req.session.passport && req.session.passport.user) {
+      res.redirect('/api/markdown/' + req.session.passport.user)
+    }
+    else {
+      res.sendStatus(403).json('You are not signed in.')
+    }
+})
+
+router.route('/api/markdown/:userid')
+  .get(con.getWallInMarkdown)
+  .post(con.updateWall)
 
 
 module.exports = router;

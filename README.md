@@ -1,3 +1,5 @@
 # face-wiki
 
-Project that combines Passport and markdown-js
+Project that allows users to sign up and edit their own Markdown "blogs".
+
+Site under development.
